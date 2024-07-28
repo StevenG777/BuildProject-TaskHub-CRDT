@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Task Hub</h1>
-    <input id="taskInput" type="text" placeholder="Enter new task">
-    <button id="addTaskBtn"> Add Task </button>
-    <ul id="taskList"></ul>
+    <div class="main-container">
+        <div class="task-hub-container">
+            <h1>Task Hub</h1>
+            <div class="input-container">
+                <input id="taskInput" type="text" placeholder="Add New Task">
+                <button id="addTaskBtn">Add Task</button>
+            </div>
+        </div>
+
+        <div class="task-list-container">
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </div>
+
     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script src="app.js"></script>
 </body>

@@ -2,8 +2,6 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
-// const io = require('socket.io')(3000, {
-//     cors: {origin: "*"} });
 
 // Intialize Express app
 app = express();
