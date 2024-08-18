@@ -2,12 +2,27 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
+const cors = require('cors');
 
-// Intialize Express app
+// Instantiate Express app
 app = express();
 
-// Create http server and attach Express to it
+// App uses the cors middleware to allow cross-origin requests
+app.use(cors());
+
+// App handle the base path in application layer
+app.get('/', (req, res) => {
+    res.status(200).send('Hello from Server Root Path!');
+})
+
+// Instantiate HTTP server & attach App to it
 const server = http.createServer(app);
+
+// HTTP server listens on port 3000
+PORT = 3000 || process.env.PORT
+server.listen(PORT, () => {
+    console.log(`Localhost server running on port ${PORT}`)
+})
 
 // Attach Socket.io to the same HTTP server
 const io = socketIo(server, {
@@ -37,11 +52,3 @@ io.on('connection', (socket) => {
         console.log(`Socket.io-Server: A user with id: ${socket.id} disconnected!`);
     });
 });
-
-// app.use(express.static('public'));
-
-// App listens on port 3000
-PORT = 3000 || process.env.PORT
-server.listen(PORT, () => {
-    console.log(`Localhost server running on port ${PORT}`)
-})
