@@ -1,0 +1,19 @@
+{
+  "name": "app-build-tool",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.1"
+  },
+  "dependencies": {
+    "@y-sweet/client": "^0.2.1",
+    "y-indexeddb": "^9.0.12",
+    "yjs": "^13.6.18"
+  }
+}

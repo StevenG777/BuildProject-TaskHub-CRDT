@@ -1,54 +1,39 @@
 // Import modules
-const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+import { getOrCreateDocAndToken, DocumentManager, createDoc} from '@y-sweet/sdk';
+import { CONNECTION_STRING } from './serverCredential.js';
 
-// Instantiate Express app
-app = express();
+// Initialize Express app
+const app = express();
+
+// App serve the Front-App Static Website
+app.use(express.static('../client/dist'));
 
 // App uses the cors middleware to allow cross-origin requests
 app.use(cors());
 
-// App handle the base path in application layer
-app.get('/', (req, res) => {
-    res.status(200).send('Hello from Server Root Path!');
+// App responds to API endpoint: /client-token with client token to client
+app.get('/client-token', async(req, res) => {
+    // Parse request input docId
+    const docId = req.query.doc ?? undefined
+    if (docId === undefined) {
+        console.log('[Server] Message: Recived client token request for a new doc');
+    } else {
+        console.log('[Server] Message: Recived client token request for doc', docId);
+    }
+
+    // Send a request as a client to Y-Sweet Y-Web-Socket cloud server
+    const clientToken = await getOrCreateDocAndToken(CONNECTION_STRING, docId);
+
+    console.log(clientToken.docId);
+
+    // Send a response back to its client
+    res.send(clientToken);
 })
 
-// Instantiate HTTP server & attach App to it
-const server = http.createServer(app);
-
-// HTTP server listens on port 3000
-PORT = 3000 || process.env.PORT
-server.listen(PORT, () => {
-    console.log(`Localhost server running on port ${PORT}`)
-})
-
-// Attach Socket.io to the same HTTP server
-const io = socketIo(server, {
-    cors: { origin: "*" }
-});
-
-// Socket.io listens connection made by user from WS client
-io.on('connection', (socket) => {
-    console.log(`Socket.io-Server: A user with id: ${socket.id} connected!`);
-    
-    // Socket.io listens for create task from WS client
-    socket.on('createTask', (task) => {
-        console.log(`The Server received createTask message from user ${socket.id}`);
-        // Emit to WS client
-        io.emit('taskCreated', task);
-    });
-
-    // Socket.io listens for remove task from WS client
-    socket.on('removeTask', (id) => {
-        console.log(`The Server received removeTask message from user ${socket.id}`);
-        // Emit to WS client
-        io.emit('taskRemoved', id);
-    });
-
-    // Socket.io listens for disconnection from WS client
-    socket.on('disconnect', () => {
-        console.log(`Socket.io-Server: A user with id: ${socket.id} disconnected!`);
-    });
+// App listens on PORT 3000
+const PORT = 3000 || process.env.PORT
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
 });
