@@ -1,11 +1,37 @@
-// Service Worker/Cache
-
 // Import modules
 import * as Y from 'yjs';
 import * as awarenessProtocol from 'y-protocols/awareness.js'
 import { createYjsProvider, debuggerUrl } from '@y-sweet/client';
 import { IndexeddbPersistence } from 'y-indexeddb';
 
+// In action to register service worker
+const registerServiceWorker = async () => {
+  // Check if the service worker is supported
+  if ('serviceWorker' in navigator) {
+    try {
+      // Register the service worker
+      const registration = await navigator.serviceWorker.register("./sw.js", {
+        scope: "/",
+      });
+
+      // Output status
+      if (registration.installing) {
+        console.log("[Service Worker in Registration] Message: Service worker installing");
+      }
+      else if (registration.waiting) {
+        console.log("[Service Worker in Registration] Message: Service worker installed");
+      }
+      else if (registration.active) {
+        console.log("[Service Worker in Registration] Message: Service worker active");
+      }
+    } catch (error) {
+      console.error(`[Service Worker in Registration] Error: Registration failed with ${error}`);
+    }
+  }
+};
+registerServiceWorker();
+
+// In action when DOM content is fully loaded
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize the UI text field, button, and list
     const taskInput = document.getElementById('taskInput');
@@ -81,7 +107,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initalize the WebSocket Provider for real-time updates & online functionality 
     const setUpWebSocket = async(ydoc) => {
         // If possible, Get the DocId from the current URL
-        const url = new URL('http://localhost:3000/client-token');
+        // const url = new URL('http://localhost:3000/client-token');
+        const url = new URL('/client-token', window.location.origin);
         const Params = new URLSearchParams(window.location.search); 
         const docId = Params.get('doc');
         if (docId) {
