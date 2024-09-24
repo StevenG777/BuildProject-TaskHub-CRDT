@@ -1,21 +1,21 @@
 # Build-Project-Task-Hub
 ## Features
-- **Local-first principle**: All the functionalities still be available even offline, you have full data ownership if you do not want to share your data with others.
-- **Real-time update**: Enabling users to see instant update from you and vice versa.
-- **Collaboration**: Empowering strong collaboration between people, your local data can be synced up with other users in the cloud once your network connection got back online.
+- **Local-first principle**: All the functionalities will still be available even offline, you have full data ownership if you do not want to share your data with others.
+- **Real-time update**: Enabling users to see instant updates from you and vice versa.
+- **Collaboration**: Empowering strong collaboration between people, your local data can be synced up with other users in the cloud once your network connection gets back online.
 
 ## Functionalities
 - **Create Task**: Create a task item to the list by specifying the task name
-- **Delelte Task**: Delelte a task item from the list
+- **Delete Task**: Delelte a task item from the list
 - In Future Development
   - **Clear Task**: Clear all the tasks in the list
   - **Create Task Description**: Create a description to detail the specific task items
   - **Edit Task Description**: Modify the existing description
   - **Clear Task Description**: Clear existing description
-  - **Specify User Name**: A pop-out window for you to specify name for future collaboration
+  - **Specify User Name**: A pop-out window for you to specify your name for future collaboration
   - **Show Changes**: A side section to show changes by different users (with user names) in collaboration setting
-  - **Status Dropdown Menu**: A drop menu to specify the status of task (Not Started, In Progress, Complete)
-  - **Preference**: A Preference Page to set up preference in Data-Syncing, Light/Dark/Auto mode, Task Status Customization and many more...
+  - **Status Dropdown Menu**: A drop menu to specify the status of a task (Not Started, In Progress, Complete)
+  - **Preference**: A Preference Page to set up preferences in Data-Syncing, Light/Dark/Auto mode, Task Status Customization and many more...
 
 ## Tech Stack
 - **Front-end:**
