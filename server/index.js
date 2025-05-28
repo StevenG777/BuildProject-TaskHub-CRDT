@@ -4,8 +4,9 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getOrCreateDocAndToken} from '@y-sweet/sdk';
-import { CONNECTION_STRING } from './serverCredential.js';
 
+// Y-Sweet Y-Web-Socket cloud server secrete key
+const CONNECTION_STRING = process.env.CONNECTION_STRING;
 
 // Retrieve the current file absolute URL (through metadata ESM way) and convert it to a path
 const __filename = fileURLToPath(import.meta.url);
