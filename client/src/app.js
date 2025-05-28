@@ -3,6 +3,7 @@ import * as Y from 'yjs';
 import * as awarenessProtocol from 'y-protocols/awareness.js'
 import { createYjsProvider, debuggerUrl } from '@y-sweet/client';
 import { IndexeddbPersistence } from 'y-indexeddb';
+import './style.css';
 
 // In action to register service worker
 const registerServiceWorker = async () => {
@@ -10,7 +11,7 @@ const registerServiceWorker = async () => {
   if ('serviceWorker' in navigator) {
     try {
       // Register the service worker
-      const registration = await navigator.serviceWorker.register("./sw.js", {
+      const registration = await navigator.serviceWorker.register("/sw.js", {
         scope: "/",
       });
 
