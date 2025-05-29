@@ -9,4 +9,4 @@
 /client/dist/
 
 # Ignore sensitive server credentials
-/server/serverCredentials.js
+/server/serverCredential.js
