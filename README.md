@@ -37,5 +37,5 @@
 5. Go to the browser and access the app through **localhost:3000**
 
 ## Use TaskHub App in the Production Environment
-- The app is hosted in Glitch
-- [Access the app here](https://task-hub.glitch.me/)
+- The app is hosted in Render
+- [Access the app here](https://task-hub-app.onrender.com/?doc=CBpzB8brmIsLgFmc9tfuQ)
