@@ -1,4 +1,9 @@
 # Build-Project-Task-Hub
+## Descriptions
+The Task Hub is a web application for task management application allow for multi-user collaboration in real-time, where its information can be synced in the cloud. It supports deleting and adding tasks as features. 
+
+The project used CRDT to resolve conflicts to achieve eventual consistency in the distributed environment using Y.JS. Web Socket and Socket.io to ensure real-time communication between clients and servers. Should there be a network outage, a local client database is used to store information and wait for it to be synced to the central cloud when the client connects to the internet. This is also a full-stack application with Vanilla JS for the front-end and Express.js for handling API endpoints for the back-end
+
 ## Features
 - **Local-first principle**: All the functionalities will still be available even offline, you have full data ownership if you do not want to share your data with others.
 - **Real-time update**: Enabling users to see instant updates from you and vice versa.
